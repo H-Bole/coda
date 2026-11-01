@@ -1,0 +1,6 @@
+interface:
+  display_name: "Coda Workspace／尾声 · 工作区收尾"
+  short_description: "整理工作区成果与清理候选，历史遗留须逐项获批并在执行前重新核验"
+  default_prompt: "请使用 $coda-workspace 为当前工作区收尾；历史遗留先列具体候选，等待我批准后重新核验再处理。"
+policy:
+  allow_implicit_invocation: false
