@@ -1,6 +1,6 @@
 ---
 name: coda
-description: Close out the current task when the user explicitly requests a wrap-up. Organize deliverables and remove only proven obsolete artifacts and temporary processes from this task. Do not use for automatic task completion or historical workspace cleanup.
+description: Close out the current task when explicitly requested, across documents, research, data, content, and code. Organize deliverables, correct evidenced wording and reference errors, and remove only proven obsolete task artifacts and temporary processes. Do not use for automatic task completion or historical workspace closeout.
 ---
 
 # Coda — current-task closeout
@@ -10,13 +10,18 @@ Run only when explicitly invoked or when the user expressly asks for closeout. F
 ## Establish scope
 
 - Read applicable project instructions. Identify the current task, workspace boundary, deliverables, and any continuing work from the conversation and available records. Do not invent missing history.
-- Limit cleanup to artifacts and processes demonstrably created for this task and now obsolete. Never broaden to historical workspace cleanup. Ask only if missing scope blocks an operation; otherwise retain uncertain items and continue safe work.
+- Keep closeout within the current task, including existing deliverables and directly related documents explicitly assigned to it. Limit removal to artifacts and processes demonstrably created for this task and now obsolete; an authorized correction does not authorize deleting its source. Never broaden to unrelated historical material. Ask only if missing scope blocks an operation; otherwise retain uncertain items and continue safe work.
 - Before acting, check ownership, references, dependencies, and current use. A filename, timestamp, untracked status, or ignore rule is not sufficient evidence of ownership or disposability. Session creation records and an artifact's demonstrated purpose can establish ownership; ownership alone does not establish obsolescence.
 
-## Organize and clean
+## Organize and correct
+
+- Check in-scope deliverables and directly related documentation for clear typos and incorrect or inconsistent wording, names, paths, entry points, and references. Correct only errors supported by the task requirements, actual deliverables, or trustworthy sources. Preserve intended meaning and existing structure; do not turn closeout into wholesale polishing, business changes, or an unsolicited audit.
+- Recheck file identity, relevant content, and scope immediately before editing; skip and report changed or insufficiently verified items. When meaning, facts, or the desired choice remain uncertain, describe the specific issue and a suggested correction instead of inventing facts or silently rewriting it.
+- For a name, path, entry-point, or reference correction, check affected references within scope and verify that they still reach the intended result. Investigate an inaccessible reference before calling it wrong; a failed request alone is insufficient. Update useful existing documentation or entry points without manufacturing a new summary document for every closeout.
+
+## Clean obsolete artifacts
 
 - Keep originals, formal deliverables, necessary dependencies, and anything referenced or still in use. Retain unknown or shared resources. Preserve reasonable existing output locations. Before a necessary move, check references and destination conflicts; do not overwrite or break references.
-- Update existing documentation or entry points only where useful to locate or use the result. Do not manufacture a new summary document for every closeout.
 - Remove only proven obsolete task artifacts. Immediately before each mutation, recheck the object's identity, relevant content, references, and use. If anything changed or cannot be verified sufficiently, skip it. Do not delete a directory based only on its name: inspect its remaining contents and handle only individually justified entries.
 - Resolve the absolute operation path and inspect link/reparse-point boundaries, including parent components. Stay within the established workspace, except for exact external temporary artifacts whose creation for this task is established. Do not expand a targeted operation into a scan of external or shared storage.
 - On Windows, prefer `Remove-Item -LiteralPath` with an exact absolute path, without `-Force` or `-Recurse`. Process justified directory entries individually, then remove an inspected empty directory. For a junction or symbolic link, verify type and target and remove only the link itself, without following it into the target. If safe link-only removal is unavailable, retain it.
@@ -27,4 +32,4 @@ Do not default to clearing shared caches, installing dependencies, changing busi
 
 ## Report and finish
 
-Give a short account of useful organization, successful deletions, closed processes, retained/skipped items with reasons, and unverified operations. Omit empty categories. Distinguish the logical size of successfully deleted files from measured disk space actually freed; do not equate them or count failed deletions or link targets. If nothing needed doing, say so and finish normally. Repeated invocation should not create new work or extra artifacts.
+Give a short account of useful organization, confirmed corrections, successful deletions, closed processes, retained/skipped items with reasons, and unverified operations. Omit empty categories. Distinguish the logical size of successfully deleted files from measured disk space actually freed; do not equate them or count failed deletions or link targets. If nothing needed doing, say so and finish normally. Repeated invocation should not create new work or extra artifacts.

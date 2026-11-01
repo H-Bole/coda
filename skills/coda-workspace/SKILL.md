@@ -1,25 +1,30 @@
 ---
 name: coda-workspace
-description: Close out a workspace when the user explicitly requests workspace-wide organization and cleanup. Present historical cleanup candidates for specific approval before acting. Do not use for automatic task completion or a current-task-only wrap-up.
+description: Close out a workspace when explicitly requested, across documents, research, data, content, and code. Organize deliverables, correct evidenced errors, and review obsolete artifacts and temporary processes. Obtain specific approval for historical corrections, moves, removals, or shutdowns. Do not use for automatic task completion or a current-task-only wrap-up.
 ---
 
 # Coda — workspace closeout
 
-Run only when explicitly invoked or when the user expressly asks for workspace closeout. Finishing another task is not a trigger. Reply in the user's language. Work within existing permissions and applicable project rules; invoking this skill does not authorize unrelated operations or historical deletion by itself.
+Run only when explicitly invoked or when the user expressly asks for workspace closeout. Finishing another task is not a trigger. Reply in the user's language. Work within existing permissions and applicable project rules; invoking this skill does not authorize unrelated operations or historical changes by itself.
 
 ## Establish scope and candidates
 
 - Read applicable project instructions. Establish the workspace boundary, current task, formal deliverables, and continuing work from the conversation and available records. Do not invent missing history or expand to unrelated projects or user storage.
 - Distinguish proven current-task artifacts from historical or uncertain items. Before proposing any cleanup, check ownership, references, dependencies, and current use. A filename, timestamp, untracked status, or ignore rule cannot independently establish that something is disposable. Retain resources with unresolved ownership or use rather than presenting guesses as safe candidates.
-- Current-task artifacts may be cleaned only when their creation for this task and obsolescence are established. Historical resources include files, directories, or processes originating before the current task; their cleanup requires the approval procedure below.
-- Present a bounded historical candidate list in the conversation: exact path or process identity, proposed action, evidence of obsolescence, and relevant reference/use checks. A directory candidate must describe its checked contents, not authorize unknown descendants. Do not create a permanent inventory file by default.
-- Wait for the user's approval of specific candidates. A general request to clean the workspace is not approval of historical candidates. While approval is pending, safe organization and independently justified current-task cleanup may continue. Do not remove, move, or terminate historical candidates before approval.
+- Existing deliverables and directly related documents explicitly assigned to the current task may be corrected within that scope. Age alone does not classify the whole file as historical, and permission to correct does not authorize deletion. Remove current-task artifacts only when their creation for this task and obsolescence are established. Historical material outside the current task requires the approval procedure below for corrections, moves, removals, and process shutdowns.
+- Present a bounded historical candidate list in the conversation: exact path or process identity, proposed action, supporting evidence, and relevant reference/use checks. For a correction, identify the passage or reference and its proposed replacement with the evidence of error; for removal or shutdown, establish obsolescence. A directory candidate must describe its checked contents, not authorize unknown descendants. Do not create a permanent inventory file by default.
+- Wait for the user's approval of specific candidates. A general request to close out the workspace is not approval of historical candidates. While approval is pending, independently authorized current-task organization, correction, and cleanup may continue. Do not correct, move, remove, or terminate historical candidates before approval.
 - Immediately before executing an approved action, recheck the same object's identity, relevant content, references, and use against what was presented. Skip changed, replaced, newly referenced, or newly occupied candidates; report why and require fresh approval of a revised candidate before acting. Never transfer approval to a new object at the same path or PID.
 
-## Organize and execute
+## Organize and correct
+
+- Check in-scope deliverables and directly related documentation for clear typos and incorrect or inconsistent wording, names, paths, entry points, and references. Correct only errors supported by the task requirements, actual deliverables, or trustworthy sources. Preserve intended meaning and existing structure; do not turn closeout into wholesale polishing, business changes, or an unsolicited audit. Historical corrections require the candidate approval procedure above.
+- Recheck file identity, relevant content, and scope immediately before editing. For historical corrections, also compare with the evidence and proposed replacement the user approved; skip changed items and require fresh approval. When meaning, facts, or the desired choice remain uncertain, describe the issue and a suggestion instead of inventing facts or silently rewriting it.
+- For a name, path, entry-point, or reference correction, check affected references within scope and verify that they still reach the intended result. Investigate an inaccessible reference before calling it wrong; a failed request alone is insufficient. Update useful existing documentation or entry points under the same scope and approval rules, without creating a summary document for every run.
+
+## Clean obsolete artifacts
 
 - Preserve originals, formal deliverables, necessary dependencies, and anything referenced or still in use. Retain unknown or shared resources. Keep reasonable existing output locations; check references and destination conflicts before a necessary move, and never overwrite or break references. Historical moves use the same candidate approval procedure.
-- Update existing documentation or entry points only where useful to locate or use results. Do not create a summary document for every run.
 - Recheck each object immediately before mutation, including current-task items. Inspect a directory's remaining contents and handle only individually justified entries; an approved directory does not cover subsequently added contents.
 - Resolve exact absolute operation paths and inspect link/reparse-point boundaries, including parent components. A link inside the workspace is not permission to traverse or clean external/shared targets. Limit external temporary cleanup to exact artifacts whose creation for the current task is established.
 - On Windows, prefer `Remove-Item -LiteralPath` with an exact absolute path, without `-Force` or `-Recurse`. Handle justified entries individually, then remove an inspected empty directory. For junctions and symbolic links, verify type and target and remove only the link itself without following the target. If safe link-only removal is unavailable, retain it.
@@ -30,4 +35,4 @@ Do not default to clearing shared caches, installing dependencies, changing busi
 
 ## Report and finish
 
-Briefly report useful organization, successful deletions, closed processes, pending historical candidates, retained/skipped items with reasons, and unverified operations. Omit empty categories. Distinguish the logical size of successfully deleted files from measured disk space actually freed; do not equate them or count failed deletions or link targets. If nothing needed doing, say so and finish normally. Repeated invocation must not create new work, duplicate inventories, or treat a previous approval as permission for changed resources.
+Briefly report useful organization, confirmed corrections, successful deletions, closed processes, pending historical candidates, retained/skipped items with reasons, and unverified operations. Omit empty categories. Distinguish the logical size of successfully deleted files from measured disk space actually freed; do not equate them or count failed deletions or link targets. If nothing needed doing, say so and finish normally. Repeated invocation must not create new work, duplicate inventories, or treat a previous approval as permission for changed resources.
